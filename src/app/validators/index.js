@@ -37,7 +37,26 @@ const validateUserUpdate = async data => {
   return isValid;
 };
 
+const validateMeetStore = async data => {
+  const schema = Yup.object().shape({
+    title: Yup.string().required(),
+    file_id: Yup.number().required(),
+    description: Yup.string().required(),
+    location: Yup.string().required(),
+    date: Yup.date().required(),
+  });
+
+  const isValid = schema.isValid(data);
+  return isValid;
+};
+
+const validateMeetUpdate = async data => {
+  return validateMeetStore(data);
+};
+
 export default {
   validateUserStore,
   validateUserUpdate,
+  validateMeetStore,
+  validateMeetUpdate,
 };
